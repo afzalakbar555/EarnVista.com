@@ -1,0 +1,2826 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EarnVista - Watch Ads & Earn Money</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .gradient-bg {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .show {
+      display: block;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50">
+  <!-- Navigation -->
+  <nav class="gradient-bg text-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <h1 class="text-2xl font-bold">EarnVista</h1>
+          <span class="ml-2 text-sm opacity-75">earnvista.com</span>
+        </div>
+        <div id="nav-buttons" class="space-x-4">
+          <button onclick="navigateTo('home')"
+            class="px-4 py-2 rounded hover:bg-white hover:bg-opacity-20 transition">Home</button>
+          <button onclick="navigateTo('login')"
+            class="px-4 py-2 rounded hover:bg-white hover:bg-opacity-20 transition">Login</button>
+          <button onclick="navigateTo('register')"
+            class="px-4 py-2 bg-white text-purple-600 rounded hover:bg-gray-100 transition">Register</button>
+        </div>
+        <div id="user-nav" class="flex items-center space-x-4 hidden">
+          <button onclick="navigateTo('dashboard')"
+            class="px-4 py-2 rounded hover:bg-white hover:bg-opacity-20 transition">Dashboard</button>
+          <div class="relative">
+            <button onclick="toggleUserMenu()"
+              class="px-4 py-2 bg-white text-purple-600 rounded hover:bg-gray-100 transition">Menu ▼</button>
+            <div id="user-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg hidden z-50">
+              <button onclick="showEditProfile()"
+                class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-t-lg">Edit Profile</button>
+              <button onclick="showBuyPlan()"
+                class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Buy Plan</button>
+              <button onclick="showWithdraw()"
+                class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Withdraw</button>
+              <button onclick="showChangePassword()"
+                class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Change Password</button>
+              <button onclick="logout()"
+                class="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 rounded-b-lg">Logout</button>
+            </div>
+          </div>
+        </div>
+        <div id="admin-nav" class="flex items-center space-x-4 hidden">
+          <button onclick="navigateTo('admin')"
+            class="px-4 py-2 rounded hover:bg-white hover:bg-opacity-20 transition">Dashboard</button>
+          <div class="relative">
+            <button onclick="toggleAdminMenu()"
+              class="px-4 py-2 bg-white text-purple-600 rounded hover:bg-gray-100 transition">Admin Menu ▼</button>
+            <div id="admin-menu" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg hidden z-50">
+              <button onclick="showManageUsers()"
+                class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-t-lg">Manage Users</button>
+              <button onclick="showAdminProfile()"
+                class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Admin Profile</button>
+              <button onclick="showAdminAccountSettings()"
+                class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Account Settings</button>
+              <button onclick="showChangePassword()"
+                class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">Change Password</button>
+              <button onclick="logout()"
+                class="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 rounded-b-lg">Logout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content Area -->
+  <div id="main-content" class="min-h-screen">
+    <!-- Home Page -->
+    <div id="home-page" class="page">
+      <!-- Hero Section -->
+      <div class="gradient-bg text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+          <h2 class="text-5xl font-bold mb-6">Watch Ads & Earn Money</h2>
+          <p class="text-xl mb-8 opacity-90">Join thousands of users earning daily by watching advertisements</p>
+          <button onclick="navigateTo('register')"
+            class="bg-white text-purple-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100 transition">
+            Start Earning Now
+          </button>
+        </div>
+      </div>
+
+      <!-- Subscription Plans -->
+      <div class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+          <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Choose Your Plan</h3>
+          <div class="grid md:grid-cols-3 gap-8">
+            <!-- Silver Plan -->
+            <div class="card-hover bg-gray-50 rounded-lg p-8 text-center border-2 border-gray-200">
+              <div class="w-16 h-16 bg-gray-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <span class="text-white font-bold text-xl">S</span>
+              </div>
+              <h4 class="text-2xl font-bold mb-4 text-gray-800">Silver</h4>
+              <p class="text-4xl font-bold text-gray-600 mb-6">Rs.1,000</p>
+              <ul class="text-left space-y-2 mb-8">
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 5 Ads per day</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Rs.6 per ad</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Basic support</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Referral bonus</li>
+              </ul>
+              <button onclick="buyPlan('Silver', 1000)"
+                class="w-full bg-gray-500 text-white py-3 rounded-lg hover:bg-gray-600 transition">
+                Choose Silver
+              </button>
+            </div>
+
+            <!-- Platinum Plan -->
+            <div class="card-hover bg-blue-50 rounded-lg p-8 text-center border-2 border-blue-300">
+              <div class="w-16 h-16 bg-blue-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <span class="text-white font-bold text-xl">P</span>
+              </div>
+              <h4 class="text-2xl font-bold mb-4 text-blue-800">Platinum</h4>
+              <p class="text-4xl font-bold text-blue-600 mb-6">Rs.2,000</p>
+              <ul class="text-left space-y-2 mb-8">
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 14 Ads per day</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Rs.8 per ad</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Priority support</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Higher referral bonus</li>
+              </ul>
+              <button onclick="buyPlan('Platinum', 2000)"
+                class="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition">
+                Choose Platinum
+              </button>
+            </div>
+
+            <!-- Gold Plan -->
+            <div class="card-hover bg-yellow-50 rounded-lg p-8 text-center border-2 border-yellow-300">
+              <div class="w-16 h-16 bg-yellow-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <span class="text-white font-bold text-xl">G</span>
+              </div>
+              <h4 class="text-2xl font-bold mb-4 text-yellow-800">Gold</h4>
+              <p class="text-4xl font-bold text-yellow-600 mb-6">Rs.3,000</p>
+              <ul class="text-left space-y-2 mb-8">
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 25 Ads per day</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Rs.10 per ad</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> VIP support</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Maximum referral bonus</li>
+              </ul>
+              <button onclick="buyPlan('Gold', 3000)"
+                class="w-full bg-yellow-500 text-white py-3 rounded-lg hover:bg-yellow-600 transition">
+                Choose Gold
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Registration Page -->
+    <div id="register-page" class="page hidden min-h-screen flex items-center justify-center py-12">
+      <div class="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Create Account</h2>
+        <form id="register-form" class="space-y-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+            <input type="text" id="reg-name" required
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+            <input type="email" id="reg-email" required
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+            <input type="tel" id="reg-phone" required
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+            <input type="password" id="reg-password" required
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Referral Code (Optional)</label>
+            <input type="text" id="reg-referral"
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+          </div>
+          <button type="submit" class="w-full gradient-bg text-white py-3 rounded-lg hover:opacity-90 transition">
+            Register Now
+          </button>
+        </form>
+        <p class="text-center mt-6 text-gray-600">
+          Already have an account?
+          <button onclick="navigateTo('login')" class="text-purple-600 hover:underline">Login here</button>
+        </p>
+      </div>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login-page" class="page hidden min-h-screen flex items-center justify-center py-12">
+      <div class="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Welcome Back</h2>
+        <form id="login-form" class="space-y-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+            <input type="email" id="login-email" required
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+            <input type="password" id="login-password" required
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+          </div>
+          <button type="submit" class="w-full gradient-bg text-white py-3 rounded-lg hover:opacity-90 transition">
+            Login
+          </button>
+        </form>
+        <p class="text-center mt-4 text-gray-600">
+          <button onclick="showForgotPassword()" class="text-purple-600 hover:underline">Forgot Password?</button>
+        </p>
+        <p class="text-center mt-2 text-gray-600">
+          Don't have an account?
+          <button onclick="navigateTo('register')" class="text-purple-600 hover:underline">Register here</button>
+        </p>
+
+      </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboard-page" class="page hidden py-8">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="mb-8">
+          <h2 class="text-3xl font-bold text-gray-800">Welcome, <span id="user-name">User</span>!</h2>
+          <p class="text-gray-600">Your earning dashboard</p>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+          <div class="bg-white rounded-lg shadow p-4">
+            <h3 class="text-sm font-semibold text-gray-700">Total Earnings</h3>
+            <p id="user-earnings" class="text-2xl font-bold text-green-600">Rs.0</p>
+          </div>
+          <div class="bg-white rounded-lg shadow p-4">
+            <h3 class="text-sm font-semibold text-gray-700">Ads Watched</h3>
+            <p id="user-ads-watched" class="text-2xl font-bold text-blue-600">0</p>
+          </div>
+          <div class="bg-white rounded-lg shadow p-4">
+            <h3 class="text-sm font-semibold text-gray-700">Referrals</h3>
+            <p id="user-referrals" class="text-2xl font-bold text-purple-600">0</p>
+          </div>
+          <div class="bg-white rounded-lg shadow p-4">
+            <h3 class="text-sm font-semibold text-gray-700">Referral Earnings</h3>
+            <p id="user-referral-earnings" class="text-2xl font-bold text-orange-600">Rs.0</p>
+          </div>
+          <div class="bg-white rounded-lg shadow p-4">
+            <h3 class="text-sm font-semibold text-gray-700">Current Plan</h3>
+            <p id="user-plan" class="text-2xl font-bold text-gray-600">No Plan</p>
+          </div>
+        </div>
+
+        <!-- Main Dashboard Content -->
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+          <!-- Watch Ads Section -->
+          <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-xl font-bold mb-4 text-gray-800">Watch Ads</h3>
+            <div id="ads-container" class="space-y-4">
+              <div class="text-center py-8 text-gray-500">
+                <p>No ads available. Admin needs to add ad links.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Referral Section -->
+          <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-xl font-bold mb-4 text-gray-800">Referral Program</h3>
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Your Referral Code</label>
+              <div class="flex">
+                <input type="text" id="user-referral-code" readonly
+                  class="flex-1 px-3 py-2 border border-gray-300 rounded-l-lg bg-gray-50">
+                <button onclick="copyReferral()"
+                  class="bg-purple-500 text-white px-4 py-2 rounded-r-lg hover:bg-purple-600 transition">
+                  Copy
+                </button>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <h4 class="font-semibold text-gray-700">Referral Bonus Rates</h4>
+              <div class="text-sm space-y-1">
+                <p class="text-gray-600">• Silver Plan: 1% of referred user's plan cost</p>
+                <p class="text-gray-600">• Platinum Plan: 3% of referred user's plan cost</p>
+                <p class="text-gray-600">• Gold Plan: 5% of referred user's plan cost</p>
+              </div>
+              <div class="mt-3 p-3 bg-blue-50 rounded-lg">
+                <h5 class="font-semibold text-blue-800 text-sm">Your Current Bonus Rate:</h5>
+                <p id="user-bonus-rate" class="text-blue-700 text-sm"></p>
+              </div>
+              <h4 class="font-semibold text-gray-700 mt-4">Your Referrals</h4>
+              <div id="referral-list" class="space-y-2">
+                <p class="text-sm text-gray-500 text-center py-4">No referrals yet. Share your code to start earning!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Status Section -->
+        <div class="bg-white rounded-lg shadow p-6">
+          <h3 class="text-xl font-bold mb-4 text-gray-800">Transaction History</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-4 py-3 text-left">Type</th>
+                  <th class="px-4 py-3 text-left">Amount</th>
+                  <th class="px-4 py-3 text-left">Date</th>
+                  <th class="px-4 py-3 text-left">Status</th>
+                  <th class="px-4 py-3 text-left">Details</th>
+                </tr>
+              </thead>
+              <tbody id="user-payment-history" class="divide-y divide-gray-200">
+                <tr>
+                  <td colspan="5" class="px-4 py-8 text-center text-gray-500">No transaction history</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin Page -->
+    <div id="admin-page" class="page hidden py-8 bg-gradient-to-br from-gray-900 via-purple-900 to-black min-h-screen">
+      <div class="max-w-7xl mx-auto px-4">
+        <!-- Admin Dashboard Header -->
+        <div class="mb-8 text-center">
+          <div class="relative inline-block">
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full blur-xl opacity-75 animate-pulse">
+            </div>
+            <div class="relative bg-black bg-opacity-50 backdrop-blur-sm rounded-2xl p-6 border border-purple-500">
+              <h2
+                class="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
+                <span id="admin-display-name">Admin Panel</span>
+              </h2>
+              <p class="text-purple-300">Your Admin Command Center</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Stats -->
+        <div class="grid md:grid-cols-4 gap-6 mb-8">
+          <div class="bg-black bg-opacity-40 backdrop-blur-sm rounded-lg shadow-xl border border-purple-500 p-6">
+            <h3 class="text-lg font-semibold text-purple-300">Total Users</h3>
+            <p id="total-users" class="text-3xl font-bold text-blue-400">0</p>
+          </div>
+          <div class="bg-black bg-opacity-40 backdrop-blur-sm rounded-lg shadow-xl border border-green-500 p-6">
+            <h3 class="text-lg font-semibold text-green-300">Active Plans</h3>
+            <p id="active-plans" class="text-3xl font-bold text-green-400">0</p>
+          </div>
+          <div class="bg-black bg-opacity-40 backdrop-blur-sm rounded-lg shadow-xl border border-pink-500 p-6">
+            <h3 class="text-lg font-semibold text-pink-300">Total Revenue</h3>
+            <p id="total-revenue" class="text-3xl font-bold text-pink-400">Rs.0</p>
+          </div>
+          <div class="bg-black bg-opacity-40 backdrop-blur-sm rounded-lg shadow-xl border border-orange-500 p-6">
+            <h3 class="text-lg font-semibold text-orange-300">Ads Served</h3>
+            <p id="ads-served" class="text-3xl font-bold text-orange-400">0</p>
+          </div>
+        </div>
+
+        <!-- Pending Payments Notification -->
+        <div id="pending-payments-alert" class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 hidden">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                  d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                  clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-3">
+              <p class="text-sm text-yellow-700">
+                <span id="pending-count">0</span> payment(s) pending verification.
+                <button onclick="showPendingPayments()" class="font-medium underline hover:text-yellow-800">Review
+                  now</button>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pending Withdrawals Notification -->
+        <div id="pending-withdrawals-alert" class="bg-orange-50 border-l-4 border-orange-400 p-4 mb-6 hidden">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-orange-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                  d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                  clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-3">
+              <p class="text-sm text-orange-700">
+                <span id="pending-withdrawals-count">0</span> withdrawal request(s) pending approval.
+                <button onclick="showPendingWithdrawals()" class="font-medium underline hover:text-orange-800">Review
+                  now</button>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Controls -->
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+          <!-- Payment Methods Management -->
+          <div class="bg-black bg-opacity-40 backdrop-blur-sm rounded-lg shadow-xl border border-purple-500 p-6">
+            <h3 class="text-xl font-bold mb-4 text-purple-300">💳 Payment Methods</h3>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-purple-300 mb-2">Method Name</label>
+                <input type="text" id="payment-method-name" placeholder="e.g., JazzCash"
+                  class="w-full px-3 py-2 bg-black bg-opacity-50 border border-purple-400 rounded-lg text-white placeholder-gray-400 focus:border-purple-300">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-purple-300 mb-2">Account Number/Details</label>
+                <input type="text" id="payment-method-details" placeholder="e.g., 03001234567"
+                  class="w-full px-3 py-2 bg-black bg-opacity-50 border border-purple-400 rounded-lg text-white placeholder-gray-400 focus:border-purple-300">
+              </div>
+              <button onclick="addPaymentMethod()"
+                class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-2 rounded hover:from-purple-700 hover:to-pink-700 transition">
+                Add Payment Method
+              </button>
+              <div id="payment-methods-list" class="space-y-2">
+                <p class="text-sm text-purple-400">No payment methods added</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ad Links Management -->
+          <div class="bg-black bg-opacity-40 backdrop-blur-sm rounded-lg shadow-xl border border-green-500 p-6">
+            <h3 class="text-xl font-bold mb-4 text-green-300">🎯 Ad Links</h3>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-green-300 mb-2">Ad Title</label>
+                <input type="text" id="ad-title" placeholder="e.g., Fashion Brand Ad"
+                  class="w-full px-3 py-2 bg-black bg-opacity-50 border border-green-400 rounded-lg text-white placeholder-gray-400 focus:border-green-300">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-green-300 mb-2">Ad URL</label>
+                <input type="url" id="ad-url" placeholder="https://example.com"
+                  class="w-full px-3 py-2 bg-black bg-opacity-50 border border-green-400 rounded-lg text-white placeholder-gray-400 focus:border-green-300">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-green-300 mb-2">Duration (seconds)</label>
+                <input type="number" id="ad-duration" placeholder="30"
+                  class="w-full px-3 py-2 bg-black bg-opacity-50 border border-green-400 rounded-lg text-white placeholder-gray-400 focus:border-green-300">
+              </div>
+              <button onclick="addAdLink()"
+                class="w-full bg-gradient-to-r from-green-600 to-blue-600 text-white py-2 rounded hover:from-green-700 hover:to-blue-700 transition">
+                Add Ad Link
+              </button>
+              <div id="ad-links-list" class="space-y-2">
+                <p class="text-sm text-green-400">No ad links added</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pending Payments Management -->
+        <div class="bg-black bg-opacity-40 backdrop-blur-sm rounded-lg shadow-xl border border-yellow-500 p-6 mb-8">
+          <h3 class="text-xl font-bold mb-4 text-yellow-300">💰 Pending Payment Verifications</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead class="bg-black bg-opacity-50">
+                <tr>
+                  <th class="px-4 py-3 text-left text-yellow-300">User</th>
+                  <th class="px-4 py-3 text-left text-yellow-300">Plan</th>
+                  <th class="px-4 py-3 text-left text-yellow-300">Amount</th>
+                  <th class="px-4 py-3 text-left text-yellow-300">Sender Name</th>
+                  <th class="px-4 py-3 text-left text-yellow-300">Sender Phone</th>
+                  <th class="px-4 py-3 text-left text-yellow-300">Screenshot</th>
+                  <th class="px-4 py-3 text-left text-yellow-300">Date</th>
+                  <th class="px-4 py-3 text-left text-yellow-300">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="pending-payments-table" class="divide-y divide-purple-700 text-white">
+                <tr>
+                  <td colspan="8" class="px-4 py-8 text-center text-purple-400">No pending payments</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Pending Withdrawals Management -->
+        <div class="bg-black bg-opacity-40 backdrop-blur-sm rounded-lg shadow-xl border border-orange-500 p-6 mb-8">
+          <h3 class="text-xl font-bold mb-4 text-orange-300">💸 Pending Withdrawal Requests</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead class="bg-black bg-opacity-50">
+                <tr>
+                  <th class="px-4 py-3 text-left text-orange-300">User</th>
+                  <th class="px-4 py-3 text-left text-orange-300">Method</th>
+                  <th class="px-4 py-3 text-left text-orange-300">Amount</th>
+                  <th class="px-4 py-3 text-left text-orange-300">Receiver Name</th>
+                  <th class="px-4 py-3 text-left text-orange-300">Account Number</th>
+                  <th class="px-4 py-3 text-left text-orange-300">Date</th>
+                  <th class="px-4 py-3 text-left text-orange-300">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="pending-withdrawals-table" class="divide-y divide-purple-700 text-white">
+                <tr>
+                  <td colspan="7" class="px-4 py-8 text-center text-purple-400">No pending withdrawals</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- User Management -->
+        <div id="manage-users"
+          class="bg-black bg-opacity-40 backdrop-blur-sm rounded-lg shadow-xl border border-blue-500 p-6 mb-8">
+          <h3 class="text-xl font-bold mb-4 text-blue-300">👥 All Users</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead class="bg-black bg-opacity-50">
+                <tr>
+                  <th class="px-4 py-3 text-left text-blue-300">Name</th>
+                  <th class="px-4 py-3 text-left text-blue-300">Email</th>
+                  <th class="px-4 py-3 text-left text-blue-300">Phone</th>
+                  <th class="px-4 py-3 text-left text-blue-300">Plan</th>
+                  <th class="px-4 py-3 text-left text-blue-300">Ads Watched</th>
+                  <th class="px-4 py-3 text-left text-blue-300">Ad Earnings</th>
+                  <th class="px-4 py-3 text-left text-blue-300">Referral Earnings</th>
+                  <th class="px-4 py-3 text-left text-blue-300">Total Earnings</th>
+                  <th class="px-4 py-3 text-left text-blue-300">Referral Code</th>
+                  <th class="px-4 py-3 text-left text-blue-300">Referred By</th>
+                  <th class="px-4 py-3 text-left text-blue-300">Status</th>
+                  <th class="px-4 py-3 text-left text-blue-300">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="users-table" class="divide-y divide-purple-700 text-white">
+                <tr>
+                  <td colspan="12" class="px-4 py-8 text-center text-purple-400">No users registered yet</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Plan Statistics -->
+        <div class="bg-black bg-opacity-40 backdrop-blur-sm rounded-lg shadow-xl border border-indigo-500 p-6 mb-8">
+          <h3 class="text-xl font-bold mb-4 text-indigo-300">📊 Plan Distribution</h3>
+          <div class="grid md:grid-cols-3 gap-4">
+            <div class="text-center p-4 bg-black bg-opacity-30 rounded-lg border border-gray-600">
+              <h4 class="font-semibold text-gray-300">Silver Plans</h4>
+              <p id="silver-count" class="text-2xl font-bold text-gray-400">0</p>
+              <p id="silver-revenue" class="text-sm text-gray-500">Rs.0 revenue</p>
+            </div>
+            <div class="text-center p-4 bg-black bg-opacity-30 rounded-lg border border-blue-600">
+              <h4 class="font-semibold text-blue-300">Platinum Plans</h4>
+              <p id="platinum-count" class="text-2xl font-bold text-blue-400">0</p>
+              <p id="platinum-revenue" class="text-sm text-blue-500">Rs.0 revenue</p>
+            </div>
+            <div class="text-center p-4 bg-black bg-opacity-30 rounded-lg border border-yellow-600">
+              <h4 class="font-semibold text-yellow-300">Gold Plans</h4>
+              <p id="gold-count" class="text-2xl font-bold text-yellow-400">0</p>
+              <p id="gold-revenue" class="text-sm text-yellow-500">Rs.0 revenue</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Tools -->
+        <div class="bg-gradient-to-r from-purple-900 to-indigo-900 border border-purple-700 rounded-lg shadow-xl p-6">
+          <h3 class="text-xl font-bold mb-4 text-purple-200">👑 Admin Tools</h3>
+          <div class="space-y-4">
+            <div class="p-4 bg-black bg-opacity-30 rounded-lg border border-purple-600">
+              <h4 class="font-semibold text-purple-300 mb-2">🔄 Renew All Ads</h4>
+              <p class="text-sm text-purple-200 mb-3">Reset all ad watching timers for all users. They can immediately
+                re-watch all ads.</p>
+              <button onclick="renewAllAds()"
+                class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded hover:from-purple-700 hover:to-pink-700 transition">
+                🔄 Renew All Ads
+              </button>
+            </div>
+            <div class="p-4 bg-black bg-opacity-30 rounded-lg border border-blue-600">
+              <h4 class="font-semibold text-blue-300 mb-2">Data Persistence Status</h4>
+              <p class="text-sm text-blue-200">✅ All data is automatically saved to browser storage and will persist
+                after page refresh.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="edit-profile-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+        <h3 class="text-2xl font-bold mb-6 text-gray-800">Edit Profile</h3>
+        <form id="edit-profile-form" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+            <input type="text" id="edit-name"
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Date of Birth</label>
+            <input type="date" id="edit-dob"
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+            <select id="edit-gender"
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="flex space-x-4">
+            <button type="button" onclick="closeEditProfileModal()"
+              class="flex-1 bg-gray-500 text-white py-2 rounded hover:bg-gray-600 transition">
+              Cancel
+            </button>
+            <button type="submit" class="flex-1 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">
+              Update Profile
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Buy Plan Modal -->
+    <div id="buy-plan-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg p-8 max-w-4xl w-full mx-4 max-h-screen overflow-y-auto">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-2xl font-bold text-gray-800">Choose Your Plan</h3>
+          <button onclick="closeBuyPlanModal()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Silver Plan -->
+          <div class="card-hover bg-gray-50 rounded-lg p-6 text-center border-2 border-gray-200">
+            <div class="w-12 h-12 bg-gray-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+              <span class="text-white font-bold">S</span>
+            </div>
+            <h4 class="text-xl font-bold mb-3 text-gray-800">Silver</h4>
+            <p class="text-3xl font-bold text-gray-600 mb-4">Rs.1,000</p>
+            <ul class="text-left space-y-2 mb-6 text-sm">
+              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 5 Ads per day</li>
+              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Rs.6 per ad</li>
+              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Basic support</li>
+              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Referral bonus</li>
+            </ul>
+            <button onclick="buyPlan('Silver', 1000)"
+              class="w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600 transition">
+              Choose Silver
+            </button>
+          </div>
+
+          <!-- Platinum Plan -->
+          <div class="card-hover bg-blue-50 rounded-lg p-6 text-center border-2 border-blue-300">
+            <div class="w-12 h-12 bg-blue-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+              <span class="text-white font-bold">P</span>
+            </div>
+            <h4 class="text-xl font-bold mb-3 text-blue-800">Platinum</h4>
+            <p class="text-3xl font-bold text-blue-600 mb-4">Rs.2,000</p>
+            <ul class="text-left space-y-2 mb-6 text-sm">
+              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 14 Ads per day</li>
+              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Rs.8 per ad</li>
+              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Priority support</li>
+              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Higher referral bonus</li>
+            </ul>
+            <button onclick="buyPlan('Platinum', 2000)"
+              class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">
+              Choose Platinum
+            </button>
+          </div>
+
+          <!-- Gold Plan -->
+          <div class="card-hover bg-yellow-50 rounded-lg p-6 text-center border-2 border-yellow-300">
+            <div class="w-12 h-12 bg-yellow-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+              <span class="text-white font-bold">G</span>
+            </div>
+            <h4 class="text-xl font-bold mb-3 text-yellow-800">Gold</h4>
+            <p class="text-3xl font-bold text-yellow-600 mb-4">Rs.3,000</p>
+            <ul class="text-left space-y-2 mb-6 text-sm">
+              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> 25 Ads per day</li>
+              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Rs.10 per ad</li>
+              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> VIP support</li>
+              <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Maximum referral bonus</li>
+            </ul>
+            <button onclick="buyPlan('Gold', 3000)"
+              class="w-full bg-yellow-500 text-white py-2 rounded hover:bg-yellow-600 transition">
+              Choose Gold
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Withdraw Modal -->
+    <div id="withdraw-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+        <h3 class="text-2xl font-bold mb-6 text-gray-800">Withdraw Earnings</h3>
+        <div id="withdraw-eligibility" class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg hidden">
+          <div class="flex justify-between items-center">
+            <p class="text-sm text-red-700">Referral requirement not met. Current referrals: <span
+                id="current-referrals">0</span> | Required: <span id="required-referrals">0</span></p>
+            <button onclick="closeWithdrawModal()"
+              class="text-red-500 hover:text-red-700 font-bold text-lg ml-2">&times;</button>
+          </div>
+        </div>
+        <div id="withdraw-amount-error" class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg hidden">
+          <p class="text-sm text-red-700">Minimum withdrawal amount is Rs.355 and maximum is Rs.12,000</p>
+        </div>
+        <form id="withdraw-form" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Withdraw Method</label>
+            <select id="withdraw-method" required
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+              <option value="">Select Method</option>
+              <option value="JazzCash">JazzCash</option>
+              <option value="EasyPaisa">EasyPaisa</option>
+              <option value="Bank Transfer">Bank Transfer</option>
+              <option value="UBL Omni">UBL Omni</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Receiver's Full Name</label>
+            <input type="text" id="receiver-name" required
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              placeholder="Enter full name as per account">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Receiver's Account Number</label>
+            <input type="text" id="receiver-account" required
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              placeholder="Enter account number">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Amount to Withdraw (Rs.355 - Rs.12,000)</label>
+            <input type="number" id="withdraw-amount" min="355" max="12000" required
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              placeholder="Enter amount">
+            <p class="text-xs text-gray-500 mt-1">Available balance: Rs.<span id="available-balance">0</span></p>
+          </div>
+          <div class="flex space-x-4">
+            <button type="button" onclick="closeWithdrawModal()"
+              class="flex-1 bg-gray-500 text-white py-2 rounded hover:bg-gray-600 transition">
+              Cancel
+            </button>
+            <button type="submit" class="flex-1 bg-green-500 text-white py-2 rounded hover:bg-green-600 transition">
+              Submit Request
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="password-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+        <h3 class="text-2xl font-bold mb-6 text-gray-800">Change Password</h3>
+        <form id="password-form" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Current Password</label>
+            <input type="password" id="current-password" required
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">New Password</label>
+            <input type="password" id="new-password" required
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Confirm New Password</label>
+            <input type="password" id="confirm-password" required
+              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+          </div>
+          <div class="flex space-x-4">
+            <button type="button" onclick="closePasswordModal()"
+              class="flex-1 bg-gray-500 text-white py-2 rounded hover:bg-gray-600 transition">
+              Cancel
+            </button>
+            <button type="submit" class="flex-1 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">
+              Update Password
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgot-password-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+        <h3 class="text-2xl font-bold mb-6 text-gray-800">Reset Password</h3>
+        <div id="forgot-step-1">
+          <form id="forgot-email-form" class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Enter your email address</label>
+              <input type="email" id="forgot-email" required
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                placeholder="your@email.com">
+            </div>
+            <div class="flex space-x-4">
+              <button type="button" onclick="closeForgotPasswordModal()"
+                class="flex-1 bg-gray-500 text-white py-2 rounded hover:bg-gray-600 transition">
+                Cancel
+              </button>
+              <button type="submit" class="flex-1 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">
+                Send Reset Code
+              </button>
+            </div>
+          </form>
+        </div>
+        <div id="forgot-step-2" class="hidden">
+          <form id="forgot-verify-form" class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Enter 6-digit verification code</label>
+              <input type="text" id="verification-code" required maxlength="6"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-center text-2xl tracking-widest"
+                placeholder="000000">
+              <p class="text-xs text-gray-500 mt-1">Code sent to: <span id="masked-email"></span></p>
+            </div>
+            <div class="flex space-x-4">
+              <button type="button" onclick="goBackToEmailStep()"
+                class="flex-1 bg-gray-500 text-white py-2 rounded hover:bg-gray-600 transition">
+                Back
+              </button>
+              <button type="submit" class="flex-1 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">
+                Verify Code
+              </button>
+            </div>
+          </form>
+        </div>
+        <div id="forgot-step-3" class="hidden">
+          <form id="forgot-reset-form" class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">New Password</label>
+              <input type="password" id="new-forgot-password" required
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Confirm New Password</label>
+              <input type="password" id="confirm-forgot-password" required
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+            </div>
+            <div class="flex space-x-4">
+              <button type="button" onclick="closeForgotPasswordModal()"
+                class="flex-1 bg-gray-500 text-white py-2 rounded hover:bg-gray-600 transition">
+                Cancel
+              </button>
+              <button type="submit" class="flex-1 bg-green-500 text-white py-2 rounded hover:bg-green-600 transition">
+                Reset Password
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg p-8 max-w-lg w-full mx-4 max-h-screen overflow-y-auto">
+        <h3 class="text-2xl font-bold mb-6 text-gray-800">Complete Payment</h3>
+        <div id="payment-details" class="mb-6">
+          <div class="bg-gray-50 p-4 rounded-lg mb-4">
+            <h4 class="font-semibold">Plan: <span id="selected-plan"></span></h4>
+            <p class="text-2xl font-bold text-green-600">Amount: Rs.<span id="selected-amount"></span></p>
+          </div>
+          <div class="mb-6">
+            <h4 class="font-semibold mb-2">Payment Methods:</h4>
+            <div id="payment-methods" class="space-y-2">
+              <p class="text-gray-500">No payment methods configured by admin</p>
+            </div>
+          </div>
+
+          <!-- Payment Form -->
+          <form id="payment-verification-form" class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Sender's Name *</label>
+              <input type="text" id="sender-name" required
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                placeholder="Enter your full name">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Sender's Phone Number *</label>
+              <input type="tel" id="sender-phone" required
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                placeholder="Enter phone number used for payment">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Payment Screenshot *</label>
+              <input type="file" id="payment-screenshot" accept="image/*" required
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+              <p class="text-xs text-gray-500 mt-1">Upload a clear screenshot of your payment confirmation</p>
+            </div>
+            <div id="screenshot-preview" class="hidden">
+              <img id="preview-image" class="w-full max-w-xs mx-auto rounded-lg border"
+                alt="Payment Screenshot Preview">
+            </div>
+          </form>
+        </div>
+        <div class="flex space-x-4">
+          <button onclick="closePaymentModal()"
+            class="flex-1 bg-gray-500 text-white py-2 rounded hover:bg-gray-600 transition">
+            Cancel
+          </button>
+          <button onclick="submitPaymentVerification()"
+            class="flex-1 bg-green-500 text-white py-2 rounded hover:bg-green-600 transition">
+            Submit for Verification
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Admin Account Settings Modal -->
+    <div id="admin-account-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-gradient-to-br from-gray-900 to-purple-900 rounded-lg p-8 max-w-md w-full mx-4 border border-purple-500">
+            <h3 class="text-2xl font-bold mb-6 text-purple-300">👑 Admin Settings</h3>
+            <form id="admin-account-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-purple-300 mb-2">Display Name</label>
+                    <input type="text" id="admin-display-name-input" required class="w-full px-3 py-2 bg-black bg-opacity-50 border border-purple-400 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-purple-300 mb-2">Admin Email</label>
+                    <input type="email" id="admin-email" required class="w-full px-3 py-2 bg-black bg-opacity-50 border border-purple-400 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-purple-300 mb-2">Admin Phone</label>
+                    <input type="tel" id="admin-phone" required class="w-full px-3 py-2 bg-black bg-opacity-50 border border-purple-400 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-purple-300 mb-2">Current Password (to confirm changes)</label>
+                    <input type="password" id="admin-current-password" required class="w-full px-3 py-2 bg-black bg-opacity-50 border border-purple-400 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+                <div class="flex space-x-4">
+                    <button type="button" onclick="closeAdminAccountModal()" class="flex-1 bg-gray-600 text-white py-2 rounded hover:bg-gray-700 transition">
+                        Cancel
+                    </button>
+                    <button type="submit" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-2 rounded hover:from-purple-700 hover:to-pink-700 transition">
+                        Update Settings
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Image Viewer Modal -->
+    <div id="image-viewer-modal"
+      class="fixed inset-0 bg-black bg-opacity-75 hidden flex items-center justify-center z-50">
+      <div class="relative max-w-4xl max-h-screen p-4">
+        <button onclick="closeImageViewer()"
+          class="absolute top-2 right-2 bg-white text-black rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200 z-10">
+          ×
+        </button>
+        <img id="viewer-image" class="max-w-full max-h-full object-contain rounded-lg" alt="Payment Screenshot">
+      </div>
+    </div>
+  </div>
+  <script>
+    // Navigation functions
+    function navigateTo(page) {
+      // Hide all pages
+      document.querySelectorAll('.page').forEach(pageElement => {
+        pageElement.classList.add('hidden');
+      });
+
+      // Show selected page
+      const pageElement = document.getElementById(page + '-page');
+      if (pageElement) {
+        pageElement.classList.remove('hidden');
+      }
+
+      // Update navigation
+      updateNavigation();
+    }
+
+    function updateNavigation() {
+      if (currentUser) {
+        document.getElementById('nav-buttons').classList.add('hidden');
+        if (currentUser.isAdmin) {
+          document.getElementById('user-nav').classList.add('hidden');
+          document.getElementById('admin-nav').classList.remove('hidden');
+        } else {
+          document.getElementById('admin-nav').classList.add('hidden');
+          document.getElementById('user-nav').classList.remove('hidden');
+        }
+      } else {
+        document.getElementById('nav-buttons').classList.remove('hidden');
+        document.getElementById('user-nav').classList.add('hidden');
+        document.getElementById('admin-nav').classList.add('hidden');
+      }
+    }
+
+    // User data storage with localStorage persistence
+    let currentUser = null;
+    let paymentMethods = [];
+    let adLinks = [];
+    let selectedPlan = null;
+    let selectedAmount = 0;
+    let userAdProgress = {}; // Track individual user ad watching progress
+
+    // Default admin user
+    const defaultAdmin = {
+      email: 'admin@earnvista.com',
+      password: 'Admin@123',
+      name: 'Admin',
+      displayName: 'Admin Panel',
+      phone: '03001234567',
+      plan: 'Admin',
+      isAdmin: true,
+      earnings: 0,
+      adsWatched: 0,
+      referrals: 0,
+      referredBy: '',
+      status: 'Active',
+      referralCode: 'ADMIN001',
+      dateOfBirth: '',
+      gender: '',
+      referralEarnings: 0,
+      paymentHistory: []
+    };
+
+    // Load data from localStorage or use defaults
+    let users = JSON.parse(localStorage.getItem('earnvista_users')) || [];
+    let pendingPayments = JSON.parse(localStorage.getItem('earnvista_pending_payments')) || [];
+    let allPayments = JSON.parse(localStorage.getItem('earnvista_all_payments')) || [];
+    let pendingWithdrawals = JSON.parse(localStorage.getItem('earnvista_pending_withdrawals')) || [];
+    let allWithdrawals = JSON.parse(localStorage.getItem('earnvista_all_withdrawals')) || [];
+
+    // Ensure admin user always exists
+    function ensureAdminExists() {
+      const adminExists = users.find(u => u.email === defaultAdmin.email && u.isAdmin);
+      if (!adminExists) {
+        users.push({ ...defaultAdmin });
+        saveToLocalStorage();
+      }
+    }
+
+    // Initialize admin on page load
+    ensureAdminExists();
+
+    // Load other data
+    paymentMethods = JSON.parse(localStorage.getItem('earnvista_payment_methods')) || [];
+    adLinks = JSON.parse(localStorage.getItem('earnvista_ad_links')) || [];
+    userAdProgress = JSON.parse(localStorage.getItem('earnvista_user_ad_progress')) || {};
+
+    // Save data to localStorage
+    function saveToLocalStorage() {
+      localStorage.setItem('earnvista_users', JSON.stringify(users));
+      localStorage.setItem('earnvista_pending_payments', JSON.stringify(pendingPayments));
+      localStorage.setItem('earnvista_all_payments', JSON.stringify(allPayments));
+      localStorage.setItem('earnvista_pending_withdrawals', JSON.stringify(pendingWithdrawals));
+      localStorage.setItem('earnvista_all_withdrawals', JSON.stringify(allWithdrawals));
+      localStorage.setItem('earnvista_payment_methods', JSON.stringify(paymentMethods));
+      localStorage.setItem('earnvista_ad_links', JSON.stringify(adLinks));
+      localStorage.setItem('earnvista_user_ad_progress', JSON.stringify(userAdProgress));
+    }
+
+    // Renew all ads for all users
+    function renewAllAds() {
+      if (confirm('🔄 This will reset all ad watching timers for ALL users. They will be able to immediately re-watch all ads. Continue?')) {
+        // Clear all user ad progress
+        userAdProgress = {};
+        saveToLocalStorage();
+
+        // Update user dashboard if a user is currently logged in
+        if (currentUser && !currentUser.isAdmin) {
+          updateAdsContainer();
+        }
+
+        alert('✅ All ads have been renewed! Users can now re-watch all ads immediately.');
+      }
+    }
+
+    // Generate random referral code
+    function generateReferralCode() {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let result = 'APL';
+      for (let i = 0; i < 5; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return result;
+    }
+
+    // Password validation function
+    function validatePassword(password) {
+      // Must be at least 8 characters
+      if (password.length < 8) {
+        return 'Password must be at least 8 characters long';
+      }
+
+      // Must start with alphabet
+      if (!/^[A-Za-z]/.test(password)) {
+        return 'Password must start with an alphabet character';
+      }
+
+      // Must contain at least one alphabet
+      if (!/[A-Za-z]/.test(password)) {
+        return 'Password must contain at least one alphabet character';
+      }
+
+      // Must contain at least one number
+      if (!/[0-9]/.test(password)) {
+        return 'Password must contain at least one number';
+      }
+
+      // Must contain at least one special character
+      if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+        return 'Password must contain at least one special character (!@#$%^&*()_+-=[]{}|;:,.<>?)';
+      }
+
+      return null; // Valid password
+    }
+
+    // Registration form
+    document.getElementById('register-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('reg-name').value;
+      const email = document.getElementById('reg-email').value;
+      const phone = document.getElementById('reg-phone').value;
+      const password = document.getElementById('reg-password').value;
+      const referral = document.getElementById('reg-referral').value;
+
+      // Validate password
+      const passwordError = validatePassword(password);
+      if (passwordError) {
+        alert(passwordError);
+        return;
+      }
+
+      // Check if user already exists
+      if (users.find(user => user.email === email)) {
+        alert('User already exists with this email!');
+        return;
+      }
+
+      // Check if phone number already exists
+      if (users.find(user => user.phone === phone)) {
+        alert('This phone number is already registered with another account!');
+        return;
+      }
+
+      // Add new user with complete data
+      const newUser = {
+        email: email,
+        password: password,
+        name: name,
+        phone: phone,
+        plan: 'No Plan',
+        isAdmin: false,
+        earnings: 0,
+        adsWatched: 0,
+        referrals: 0,
+        referredBy: referral || 'None',
+        status: 'Active',
+        referralCode: generateReferralCode(),
+        dateOfBirth: '',
+        gender: '',
+        referralEarnings: 0,
+        paymentHistory: []
+      };
+
+      users.push(newUser);
+      saveToLocalStorage(); // Save data after registration
+      updateAdminStats();
+
+      alert('Registration successful! Please login.');
+      navigateTo('login');
+    });
+
+    // Login form
+    document.getElementById('login-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (user) {
+        currentUser = user;
+        document.getElementById('user-name').textContent = user.name;
+
+        if (user.isAdmin) {
+            // Show admin dashboard
+            navigateTo('admin');
+            updateAdminStats();
+        } else {
+            updateUserDashboard();
+            navigateTo('dashboard');
+          }
+      } else {
+        alert('Invalid email or password!');
+      }
+    });
+
+    // Logout function
+    function logout() {
+      currentUser = null;
+      navigateTo('home');
+    }
+
+    // Ad Limits According to Plans
+    const planAdLimits = {
+      "Silver": 5,
+      "Platinum": 14,
+      "Gold": 25
+    };
+
+    // Track user's daily ad watching count
+    let userAdCounts = JSON.parse(localStorage.getItem('earnvista_user_ad_counts')) || {};
+
+    // Save ad counts to localStorage
+    function saveAdCounts() {
+      localStorage.setItem('earnvista_user_ad_counts', JSON.stringify(userAdCounts));
+    }
+
+    // Initialize user ad count
+    function initializeUserAdCount(userEmail) {
+      if (!userAdCounts[userEmail]) {
+        userAdCounts[userEmail] = {
+          count: 0,
+          date: new Date().toDateString()
+        };
+        saveAdCounts();
+      }
+    }
+
+    // Check if user can watch more ads today
+    function canWatchMoreAds(userEmail, userPlan) {
+      if (!userPlan || userPlan === 'No Plan') return false;
+
+      initializeUserAdCount(userEmail);
+
+      const today = new Date().toDateString();
+      const userCount = userAdCounts[userEmail];
+
+      // Reset count if new day
+      if (userCount.date !== today) {
+        userCount.count = 0;
+        userCount.date = today;
+        saveAdCounts();
+      }
+
+      const limit = planAdLimits[userPlan] || 0;
+      return userCount.count < limit;
+    }
+
+    // Increment user's ad count
+    function incrementAdCount(userEmail, userPlan) {
+      if (!userPlan || userPlan === 'No Plan') return;
+
+      initializeUserAdCount(userEmail);
+
+      const today = new Date().toDateString();
+      const userCount = userAdCounts[userEmail];
+
+      // Reset count if new day
+      if (userCount.date !== today) {
+        userCount.count = 0;
+        userCount.date = today;
+      }
+
+      userCount.count++;
+      saveAdCounts();
+    }
+
+    // Watch ad function with improved timer and completion tracking
+    function watchAd(adIndex, adUrl, duration) {
+      if (!currentUser || currentUser.isAdmin) {
+        alert('Please login as a user to watch ads!');
+        return;
+      }
+
+      if (currentUser.plan === 'No Plan') {
+        alert('Please purchase a plan first to watch ads and earn money!');
+        return;
+      }
+
+      // Check if user has reached daily limit
+      if (!canWatchMoreAds(currentUser.email, currentUser.plan)) {
+        alert(`You've reached your daily ad limit for ${currentUser.plan} plan!\n\nYour limit: ${planAdLimits[currentUser.plan]} ads per day\n\nCome back tomorrow to watch more ads!`);
+        return;
+      }
+
+      // Initialize user ad progress if not exists
+      if (!userAdProgress[currentUser.email]) {
+        userAdProgress[currentUser.email] = {};
+      }
+
+      // Check if user already watched this ad today (24-hour reset)
+      const adWatchData = userAdProgress[currentUser.email][adIndex];
+      if (adWatchData) {
+        const lastWatchTime = new Date(adWatchData.timestamp);
+        const now = new Date();
+        const hoursSinceLastWatch = (now - lastWatchTime) / (1000 * 60 * 60);
+
+        if (hoursSinceLastWatch < 24) {
+          const hoursLeft = Math.ceil(24 - hoursSinceLastWatch);
+          alert(`⏰ You can watch this ad again in ${hoursLeft} hour(s)!\n\n🔄 Ads reset every 24 hours so you can earn daily!`);
+          return;
+        }
+      }
+
+      // Calculate earnings
+      const adEarning = currentUser.plan === 'Gold' ? 10 : currentUser.plan === 'Platinum' ? 8 : 6;
+
+      // Create countdown modal
+      const countdownModal = document.createElement('div');
+      countdownModal.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50';
+      countdownModal.innerHTML = `
+                <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 text-center">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Watching Ad</h3>
+                    <div class="mb-6">
+                        <div class="text-6xl font-bold text-blue-600 mb-2" id="countdown-timer">${duration}</div>
+                        <p class="text-gray-600">seconds remaining</p>
+                        <div class="w-full bg-gray-200 rounded-full h-3 mt-4">
+                            <div class="bg-blue-600 h-3 rounded-full transition-all duration-1000" id="progress-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4">✅ Ad is loading in new tab. Timer continues even if you switch tabs!</p>
+                    <p class="text-xs text-green-600 mb-4">💡 You can browse other tabs while the ad runs. Come back here to see your earnings!</p>
+                    <button onclick="cancelAdWatching()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
+                        Cancel & Stop Timer
+                    </button>
+                </div>
+            `;
+      document.body.appendChild(countdownModal);
+
+      // Open ad in new tab (same window)
+      const adWindow = window.open(adUrl, '_blank');
+
+      if (!adWindow) {
+        document.body.removeChild(countdownModal);
+        alert('Please allow popups for this site to watch ads and earn money!');
+        return;
+      }
+
+      let timeLeft = parseInt(duration);
+      let adCompleted = false;
+      let timerInterval;
+      let wasManuallyClosedEarly = false;
+
+      // Store timer state in localStorage for persistence
+      const timerKey = `ad_timer_${currentUser.email}_${adIndex}`;
+      const timerData = {
+        startTime: Date.now(),
+        duration: parseInt(duration),
+        adIndex: adIndex,
+        adEarning: adEarning,
+        userEmail: currentUser.email
+      };
+      localStorage.setItem(timerKey, JSON.stringify(timerData));
+
+      // Global function to cancel ad watching
+      window.cancelAdWatching = function () {
+        wasManuallyClosedEarly = true;
+        clearInterval(timerInterval);
+        if (!adWindow.closed) {
+          adWindow.close();
+        }
+        if (document.body.contains(countdownModal)) {
+          document.body.removeChild(countdownModal);
+        }
+        localStorage.removeItem(timerKey);
+        delete window.cancelAdWatching;
+        alert('⏹️ Ad watching cancelled. No earnings awarded.');
+      };
+
+      // Start countdown timer - continues regardless of tab switching
+      timerInterval = setInterval(() => {
+        // Check if ad window was closed manually before completion
+        if (adWindow.closed && !adCompleted && !wasManuallyClosedEarly) {
+          // Don't stop timer immediately - user might have accidentally closed tab
+          // Timer continues and user can still earn if they let it complete
+        }
+
+        timeLeft--;
+
+        // Update countdown display only if modal still exists
+        const timerElement = document.getElementById('countdown-timer');
+        const progressBar = document.getElementById('progress-bar');
+
+        if (timerElement) {
+          timerElement.textContent = timeLeft;
+        }
+
+        if (progressBar) {
+          const progress = ((parseInt(duration) - timeLeft) / parseInt(duration)) * 100;
+          progressBar.style.width = progress + '%';
+        }
+
+        // Ad completed successfully
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          adCompleted = true;
+
+          // Close ad window if still open
+          if (!adWindow.closed) {
+            adWindow.close();
+          }
+
+          // Remove countdown modal if it exists
+          if (document.body.contains(countdownModal)) {
+            document.body.removeChild(countdownModal);
+          }
+
+          // Clean up
+          localStorage.removeItem(timerKey);
+          delete window.cancelAdWatching;
+
+          // Mark ad as watched for this user with timestamp
+          userAdProgress[currentUser.email][adIndex] = {
+            watched: true,
+            timestamp: new Date().toISOString()
+          };
+
+          // Award earnings
+          currentUser.earnings += adEarning;
+          currentUser.adsWatched += 1;
+
+          // Increment ad count for limits
+          incrementAdCount(currentUser.email, currentUser.plan);
+
+          // Save data
+          saveToLocalStorage();
+
+          // Update displays
+          updateUserDashboard();
+          updateAdminStats();
+
+          // Success message with celebration
+          alert(`🎉 CONGRATULATIONS! 🎉\n\nYou successfully completed the ad and earned Rs.${adEarning}!\n\n💰 Your new total balance: Rs.${currentUser.earnings + (currentUser.referralEarnings || 0)}\n\n✨ Keep watching more ads to earn more money!`);
+        }
+      }, 1000);
+
+      // Don't force focus on ad window - let user manage tabs naturally
+    }
+
+    // Copy referral code
+    function copyReferral() {
+      const referralCode = document.getElementById('user-referral-code').value;
+      navigator.clipboard.writeText(referralCode).then(() => {
+        alert('Referral code copied to clipboard!');
+      });
+    }
+
+    // Update user dashboard
+    function updateUserDashboard() {
+      if (!currentUser || currentUser.isAdmin) return;
+
+      // Calculate total earnings (ads + referrals)
+      const totalEarnings = currentUser.earnings + (currentUser.referralEarnings || 0);
+
+      // Update stats
+      document.getElementById('user-earnings').textContent = `Rs.${totalEarnings}`;
+      document.getElementById('user-ads-watched').textContent = currentUser.adsWatched;
+      document.getElementById('user-referrals').textContent = currentUser.referrals;
+      document.getElementById('user-referral-earnings').textContent = `Rs.${currentUser.referralEarnings || 0}`;
+      document.getElementById('user-plan').textContent = currentUser.plan;
+
+      // Update referral code
+      document.getElementById('user-referral-code').value = currentUser.referralCode;
+
+      // Update bonus rate display
+      updateBonusRateDisplay();
+
+      // Update profile fields
+      document.getElementById('edit-name').value = currentUser.name;
+      document.getElementById('edit-dob').value = currentUser.dateOfBirth || '';
+      document.getElementById('edit-gender').value = currentUser.gender || '';
+
+      // Update ads container
+      updateAdsContainer();
+
+      // Update referral list
+      updateReferralList();
+
+      // Update payment history
+      updateUserPaymentHistory();
+    }
+
+    // Update bonus rate display
+    function updateBonusRateDisplay() {
+      const bonusRateElement = document.getElementById('user-bonus-rate');
+      if (!bonusRateElement || !currentUser || currentUser.isAdmin) return;
+
+      let bonusPercentage = 0;
+      let bonusText = '';
+
+      if (currentUser.plan === 'Silver') {
+        bonusPercentage = 1;
+        bonusText = '1% - Earn Rs.10 for Silver, Rs.20 for Platinum, Rs.30 for Gold referrals';
+      } else if (currentUser.plan === 'Platinum') {
+        bonusPercentage = 3;
+        bonusText = '3% - Earn Rs.30 for Silver, Rs.60 for Platinum, Rs.90 for Gold referrals';
+      } else if (currentUser.plan === 'Gold') {
+        bonusPercentage = 5;
+        bonusText = '5% - Earn Rs.50 for Silver, Rs.100 for Platinum, Rs.150 for Gold referrals';
+      } else {
+        bonusText = 'Purchase a plan to start earning referral bonuses!';
+      }
+
+      bonusRateElement.textContent = bonusText;
+    }
+
+    // Update referral list
+    function updateReferralList() {
+      const container = document.getElementById('referral-list');
+      if (!currentUser || currentUser.isAdmin) return;
+
+      const myReferrals = users.filter(u => u.referredBy === currentUser.referralCode && !u.isAdmin);
+
+      if (myReferrals.length === 0) {
+        container.innerHTML = '<p class="text-sm text-gray-500 text-center py-4">No referrals yet. Share your code to start earning!</p>';
+      } else {
+        container.innerHTML = myReferrals.map(user => {
+          const bonusEarned = calculateReferralBonus(user.plan);
+          return `
+                        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                            <div>
+                                <p class="font-semibold text-sm">${user.name}</p>
+                                <p class="text-xs text-gray-600">Plan: ${user.plan}</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm font-semibold text-green-600">+Rs.${bonusEarned}</p>
+                                <p class="text-xs text-gray-500">Bonus earned</p>
+                            </div>
+                        </div>
+                    `;
+        }).join('');
+      }
+    }
+
+    // Calculate referral bonus based on current user's plan and referred user's plan
+    function calculateReferralBonus(referredUserPlan) {
+      if (!currentUser || currentUser.plan === 'No Plan') return 0;
+
+      let bonusPercentage = 0;
+      if (currentUser.plan === 'Silver') bonusPercentage = 0.01; // 1%
+      else if (currentUser.plan === 'Platinum') bonusPercentage = 0.03; // 3%
+      else if (currentUser.plan === 'Gold') bonusPercentage = 0.05; // 5%
+
+      let planAmount = 0;
+      if (referredUserPlan === 'Silver') planAmount = 1000;
+      else if (referredUserPlan === 'Platinum') planAmount = 2000;
+      else if (referredUserPlan === 'Gold') planAmount = 3000;
+
+      return Math.floor(planAmount * bonusPercentage);
+    }
+
+    // Edit profile form handler
+    document.getElementById('edit-profile-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (!currentUser || currentUser.isAdmin) return;
+
+      currentUser.name = document.getElementById('edit-name').value;
+      currentUser.dateOfBirth = document.getElementById('edit-dob').value;
+      currentUser.gender = document.getElementById('edit-gender').value;
+
+      saveToLocalStorage(); // Save data after profile update
+
+      document.getElementById('user-name').textContent = currentUser.name;
+      updateAdminStats();
+      closeEditProfileModal();
+      alert('Profile updated successfully!');
+    });
+
+    // Check and reset ads that are older than 24 hours
+    function checkAndResetExpiredAds() {
+      if (!currentUser || currentUser.isAdmin || !userAdProgress[currentUser.email]) return;
+
+      const now = new Date();
+      let hasExpiredAds = false;
+
+      Object.keys(userAdProgress[currentUser.email]).forEach(adIndex => {
+        const adData = userAdProgress[currentUser.email][adIndex];
+        if (adData && adData.timestamp) {
+          const lastWatchTime = new Date(adData.timestamp);
+          const hoursSinceLastWatch = (now - lastWatchTime) / (1000 * 60 * 60);
+
+          if (hoursSinceLastWatch >= 24) {
+            delete userAdProgress[currentUser.email][adIndex];
+            hasExpiredAds = true;
+          }
+        }
+      });
+
+      if (hasExpiredAds) {
+        saveToLocalStorage();
+      }
+    }
+
+    // Update ads container with limits
+    function updateAdsContainer() {
+      const container = document.getElementById('ads-container');
+
+      if (adLinks.length === 0) {
+        container.innerHTML = '<div class="text-center py-8 text-gray-500"><p>No ads available. Admin needs to add ad links.</p></div>';
+        return;
+      }
+
+      if (currentUser.plan === 'No Plan') {
+        container.innerHTML = '<div class="text-center py-8 text-red-500"><p>Purchase a plan first to watch ads and earn money!</p></div>';
+        return;
+      }
+
+      const adEarning = currentUser.plan === 'Gold' ? 10 : currentUser.plan === 'Platinum' ? 8 : 6;
+
+      // Initialize user ad progress if not exists
+      if (!userAdProgress[currentUser.email]) {
+        userAdProgress[currentUser.email] = {};
+      }
+
+      // Check and reset expired ads first
+      checkAndResetExpiredAds();
+
+      // Categorize ads into available and waiting
+      const availableAds = [];
+      const waitingAds = [];
+
+      adLinks.forEach((ad, index) => {
+        const adWatchData = userAdProgress[currentUser.email][index];
+
+        // Check if user has reached daily limit
+        if (!canWatchMoreAds(currentUser.email, currentUser.plan)) {
+          // Show message about daily limit
+          container.innerHTML = `<div class="text-center py-8 text-blue-500">
+                        <p>🎉 You've reached your daily ad limit for ${currentUser.plan} plan!</p>
+                        <p class="text-sm mt-2">Your limit: ${planAdLimits[currentUser.plan]} ads per day</p>
+                        <p class="text-sm mt-2">Come back tomorrow to watch more ads!</p>
+                    </div>`;
+          return;
+        }
+
+        if (!adWatchData) {
+          availableAds.push({ ad, index, status: 'available' });
+        } else {
+          const lastWatchTime = new Date(adWatchData.timestamp);
+          const now = new Date();
+          const hoursSinceLastWatch = (now - lastWatchTime) / (1000 * 60 * 60);
+
+          if (hoursSinceLastWatch >= 24) {
+            availableAds.push({ ad, index, status: 'available' });
+          } else {
+            const hoursLeft = Math.ceil(24 - hoursSinceLastWatch);
+            waitingAds.push({ ad, index, hoursLeft });
+          }
+        }
+      });
+
+      // Limit available ads based on user's plan
+      const planLimit = planAdLimits[currentUser.plan] || 0;
+      const limitedAvailableAds = availableAds.slice(0, planLimit);
+
+      let containerHTML = '';
+
+      // Show available ads first
+      if (limitedAvailableAds.length > 0) {
+        containerHTML += limitedAvailableAds.map(item => `
+                    <div class="flex items-center justify-between p-4 bg-green-50 border border-green-200 rounded-lg">
+                        <div>
+                            <h4 class="font-semibold text-green-800">${item.ad.title}</h4>
+                            <p class="text-sm text-green-600">⏱️ ${item.ad.duration} seconds • 💰 Rs.${adEarning}</p>
+                            <p class="text-xs text-green-600">✅ Ready to watch and earn!</p>
+                        </div>
+                        <button onclick="watchAd(${item.index}, '${item.ad.url}', ${item.ad.duration})" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
+                            ▶️ Watch Now
+                        </button>
+                    </div>
+                `).join('');
+      }
+
+      // Show waiting ads
+      if (waitingAds.length > 0) {
+        containerHTML += waitingAds.map(item => `
+                    <div class="flex items-center justify-between p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                        <div>
+                            <h4 class="font-semibold text-yellow-800">${item.ad.title}</h4>
+                            <p class="text-sm text-yellow-600">⏱️ ${item.ad.duration} seconds • 💰 Rs.${adEarning}</p>
+                            <p class="text-xs text-yellow-600">⏰ Available in ${item.hoursLeft} hour(s)</p>
+                        </div>
+                        <button disabled class="bg-gray-400 text-white px-4 py-2 rounded cursor-not-allowed">
+                            ⏳ Wait ${item.hoursLeft}h
+                        </button>
+                    </div>
+                `).join('');
+      }
+
+      if (limitedAvailableAds.length === 0 && waitingAds.length === 0) {
+        containerHTML = '<div class="text-center py-8 text-blue-500"><p>🎉 Great job! You have watched all available ads. Check back later for new ads!</p></div>';
+      } else if (limitedAvailableAds.length === 0) {
+        containerHTML = '<div class="text-center py-4 mb-4 text-blue-600"><p>🔄 All ads watched! They will reset in a few hours for daily earning.</p></div>' + containerHTML;
+      }
+
+      container.innerHTML = containerHTML;
+    }
+
+    // Buy plan function
+    function buyPlan(plan, amount) {
+      if (!currentUser) {
+        alert('Please login first to purchase a plan!');
+        navigateTo('login');
+        return;
+      }
+
+      if (currentUser.isAdmin) {
+        alert('Admin cannot purchase plans!');
+        return;
+      }
+
+      selectedPlan = plan;
+      selectedAmount = amount;
+
+      document.getElementById('selected-plan').textContent = plan;
+      document.getElementById('selected-amount').textContent = amount;
+
+      // Reset form
+      document.getElementById('payment-verification-form').reset();
+      document.getElementById('screenshot-preview').classList.add('hidden');
+
+      updatePaymentMethods();
+      document.getElementById('payment-modal').classList.remove('hidden');
+      closeBuyPlanModal();
+    }
+
+    // Close payment modal
+    function closePaymentModal() {
+      document.getElementById('payment-modal').classList.add('hidden');
+      document.getElementById('payment-verification-form').reset();
+      document.getElementById('screenshot-preview').classList.add('hidden');
+    }
+
+    // Submit payment verification
+    function submitPaymentVerification() {
+      const senderName = document.getElementById('sender-name').value;
+      const senderPhone = document.getElementById('sender-phone').value;
+      const screenshotFile = document.getElementById('payment-screenshot').files[0];
+
+      if (!senderName || !senderPhone || !screenshotFile) {
+        alert('Please fill all required fields and upload payment screenshot!');
+        return;
+      }
+
+      if (paymentMethods.length === 0) {
+        alert('No payment methods available. Please contact admin.');
+        return;
+      }
+
+      // Create payment verification record
+      const paymentRecord = {
+        id: Date.now(),
+        userEmail: currentUser.email,
+        userName: currentUser.name,
+        plan: selectedPlan,
+        amount: selectedAmount,
+        senderName: senderName,
+        senderPhone: senderPhone,
+        screenshot: URL.createObjectURL(screenshotFile),
+        date: new Date().toLocaleDateString(),
+        status: 'pending'
+      };
+
+      pendingPayments.push(paymentRecord);
+      allPayments.push(paymentRecord);
+
+      // Add to user's payment history
+      if (!currentUser.paymentHistory) {
+        currentUser.paymentHistory = [];
+      }
+      currentUser.paymentHistory.push(paymentRecord);
+
+      saveToLocalStorage(); // Save data after payment submission
+
+      alert('Payment verification submitted successfully! Admin will review and approve your payment within 24 hours.');
+
+      updateAdminStats();
+      updatePendingPaymentsTable();
+      updateUserPaymentHistory();
+      closePaymentModal();
+    }
+
+    // Update payment methods display
+    function updatePaymentMethods() {
+      const container = document.getElementById('payment-methods');
+      if (paymentMethods.length === 0) {
+        container.innerHTML = '<p class="text-gray-500">No payment methods configured by admin</p>';
+      } else {
+        container.innerHTML = paymentMethods.map(method =>
+          `<div class="p-3 bg-gray-50 rounded">
+                        <strong>${method.name}:</strong> ${method.details}
+                    </div>`
+        ).join('');
+      }
+    }
+
+    // Add payment method (Admin)
+    function addPaymentMethod() {
+      const name = document.getElementById('payment-method-name').value;
+      const details = document.getElementById('payment-method-details').value;
+
+      if (!name || !details) {
+        alert('Please fill all fields');
+        return;
+      }
+
+      paymentMethods.push({ name, details });
+      document.getElementById('payment-method-name').value = '';
+      document.getElementById('payment-method-details').value = '';
+
+      saveToLocalStorage(); // Save data after adding payment method
+      updatePaymentMethodsList();
+    }
+
+    // Update payment methods list in admin
+    function updatePaymentMethodsList() {
+      const container = document.getElementById('payment-methods-list');
+      if (paymentMethods.length === 0) {
+        container.innerHTML = '<p class="text-sm text-gray-500">No payment methods added</p>';
+      } else {
+        container.innerHTML = paymentMethods.map((method, index) =>
+          `<div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                        <span><strong>${method.name}:</strong> ${method.details}</span>
+                        <button onclick="removePaymentMethod(${index})" class="text-red-500 hover:text-red-700">Remove</button>
+                    </div>`
+        ).join('');
+      }
+    }
+
+    // Remove payment method
+    function removePaymentMethod(index) {
+      paymentMethods.splice(index, 1);
+      updatePaymentMethodsList();
+    }
+
+    // Add ad link (Admin)
+    function addAdLink() {
+      const title = document.getElementById('ad-title').value;
+      const url = document.getElementById('ad-url').value;
+      const duration = document.getElementById('ad-duration').value;
+
+      if (!title || !url || !duration) {
+        alert('Please fill all fields');
+        return;
+      }
+
+      adLinks.push({ title, url, duration });
+      document.getElementById('ad-title').value = '';
+      document.getElementById('ad-url').value = '';
+      document.getElementById('ad-duration').value = '';
+
+      saveToLocalStorage(); // Save data after adding ad link
+      updateAdLinksList();
+    }
+
+    // Update ad links list in admin
+    function updateAdLinksList() {
+      const container = document.getElementById('ad-links-list');
+      if (adLinks.length === 0) {
+        container.innerHTML = '<p class="text-sm text-gray-500">No ad links added</p>';
+      } else {
+        container.innerHTML = adLinks.map((ad, index) =>
+          `<div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                        <span><strong>${ad.title}</strong> (${ad.duration}s)</span>
+                        <button onclick="removeAdLink(${index})" class="text-red-500 hover:text-red-700">Remove</button>
+                    </div>`
+        ).join('');
+      }
+
+      // Update user dashboard if user is logged in
+      if (currentUser && !currentUser.isAdmin) {
+        updateAdsContainer();
+      }
+    }
+
+    // Remove ad link
+    function removeAdLink(index) {
+      adLinks.splice(index, 1);
+      updateAdLinksList();
+    }
+
+    // Delete user (Admin) - FIXED VERSION
+    function deleteUser(email) {
+      if (confirm('Are you sure you want to delete this user? This action cannot be undone.')) {
+        // Remove user from users array
+        users = users.filter(u => u.email !== email);
+
+        // Remove any pending payments for this user
+        pendingPayments = pendingPayments.filter(p => p.userEmail !== email);
+
+        // Remove from all payments history
+        allPayments = allPayments.filter(p => p.userEmail !== email);
+
+        // Update all admin displays
+        updateAdminStats();
+        updatePendingPaymentsTable();
+
+        alert('User account deleted successfully!');
+      }
+    }
+
+    // Change user plan (Admin)
+    function changePlan(email, newPlan) {
+      if (!newPlan) return;
+
+      const user = users.find(u => u.email === email);
+      if (user && !user.isAdmin) {
+        user.plan = newPlan;
+        updateAdminStats();
+
+        // If this is the current logged in user, update their dashboard
+        if (currentUser && currentUser.email === email) {
+          updateUserDashboard();
+        }
+
+        alert(`Plan changed to ${newPlan} for ${user.name}`);
+      }
+    }
+
+    // Approve payment
+    function approvePayment(paymentId) {
+      const payment = pendingPayments.find(p => p.id === paymentId);
+      if (!payment) return;
+
+      const user = users.find(u => u.email === payment.userEmail);
+      if (!user) return;
+
+      // Update payment status
+      payment.status = 'approved';
+
+      // Update user plan
+      user.plan = payment.plan;
+
+      // Give referral bonus if user was referred and referrer has a plan
+      if (user.referredBy !== 'None' && user.referredBy !== '') {
+        const referrer = users.find(u => u.referralCode === user.referredBy);
+        if (referrer && referrer.plan !== 'No Plan' && !referrer.isAdmin) {
+          // Calculate bonus based on referrer's plan
+          let bonusPercentage = 0;
+          if (referrer.plan === 'Silver') bonusPercentage = 0.01; // 1%
+          else if (referrer.plan === 'Platinum') bonusPercentage = 0.03; // 3%
+          else if (referrer.plan === 'Gold') bonusPercentage = 0.05; // 5%
+
+          const bonus = Math.floor(payment.amount * bonusPercentage);
+          referrer.referralEarnings = (referrer.referralEarnings || 0) + bonus;
+          referrer.referrals += 1;
+        }
+      }
+
+      // Remove from pending payments
+      pendingPayments = pendingPayments.filter(p => p.id !== paymentId);
+
+      saveToLocalStorage(); // Save data after payment approval
+
+      alert(`Payment approved! ${user.name} is now on the ${payment.plan} plan.`);
+
+      updateAdminStats();
+      updatePendingPaymentsTable();
+
+      // Update user dashboard if they're currently logged in
+      if (currentUser && currentUser.email === user.email) {
+        updateUserDashboard();
+      }
+    }
+
+    // Reject payment
+    function rejectPayment(paymentId) {
+      if (confirm('Are you sure you want to reject this payment?')) {
+        const payment = pendingPayments.find(p => p.id === paymentId);
+        if (payment) {
+          // Update payment status
+          payment.status = 'rejected';
+        }
+
+        pendingPayments = pendingPayments.filter(p => p.id !== paymentId);
+        updatePendingPaymentsTable();
+        updateAdminStats();
+
+        // Update user dashboard if they're currently logged in
+        if (currentUser && payment && currentUser.email === payment.userEmail) {
+          updateUserDashboard();
+        }
+
+        alert('Payment rejected successfully.');
+      }
+    }
+
+    // Update pending payments table
+    function updatePendingPaymentsTable() {
+      const tbody = document.getElementById('pending-payments-table');
+      if (!tbody) return;
+
+      if (pendingPayments.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" class="px-4 py-8 text-center text-gray-500">No pending payments</td></tr>';
+      } else {
+        tbody.innerHTML = pendingPayments.map(payment => `
+                    <tr>
+                        <td class="px-4 py-3">${payment.userName}</td>
+                        <td class="px-4 py-3"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">${payment.plan}</span></td>
+                        <td class="px-4 py-3 font-semibold">Rs.${payment.amount}</td>
+                        <td class="px-4 py-3">${payment.senderName}</td>
+                        <td class="px-4 py-3">${payment.senderPhone}</td>
+                        <td class="px-4 py-3">
+                            <button onclick="viewScreenshot('${payment.screenshot}')" class="text-blue-600 hover:text-blue-800 text-xs underline">
+                                View Screenshot
+                            </button>
+                        </td>
+                        <td class="px-4 py-3 text-xs">${payment.date}</td>
+                        <td class="px-4 py-3">
+                            <button onclick="approvePayment(${payment.id})" class="bg-green-500 text-white px-2 py-1 rounded text-xs hover:bg-green-600 mr-1">
+                                Approve
+                            </button>
+                            <button onclick="rejectPayment(${payment.id})" class="bg-red-500 text-white px-2 py-1 rounded text-xs hover:bg-red-600">
+                                Reject
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+      }
+
+      // Update notification
+      const pendingCount = pendingPayments.length;
+      const alert = document.getElementById('pending-payments-alert');
+      const countSpan = document.getElementById('pending-count');
+
+      if (pendingCount > 0) {
+        alert.classList.remove('hidden');
+        countSpan.textContent = pendingCount;
+      } else {
+        alert.classList.add('hidden');
+      }
+    }
+
+    // View screenshot
+    function viewScreenshot(screenshotUrl) {
+      document.getElementById('viewer-image').src = screenshotUrl;
+      document.getElementById('image-viewer-modal').classList.remove('hidden');
+    }
+
+    // Close image viewer
+    function closeImageViewer() {
+      document.getElementById('image-viewer-modal').classList.add('hidden');
+    }
+
+    // Show pending payments section
+    function showPendingPayments() {
+      document.querySelector('#pending-payments-table').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Show pending withdrawals section
+    function showPendingWithdrawals() {
+      document.querySelector('#pending-withdrawals-table').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Update pending withdrawals table
+    function updatePendingWithdrawalsTable() {
+      const tbody = document.getElementById('pending-withdrawals-table');
+      if (!tbody) return;
+
+      if (pendingWithdrawals.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" class="px-4 py-8 text-center text-gray-500">No pending withdrawals</td></tr>';
+      } else {
+        tbody.innerHTML = pendingWithdrawals.map(withdrawal => `
+                    <tr>
+                        <td class="px-4 py-3">${withdrawal.userName}</td>
+                        <td class="px-4 py-3"><span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">${withdrawal.method}</span></td>
+                        <td class="px-4 py-3 font-semibold">Rs.${withdrawal.amount}</td>
+                        <td class="px-4 py-3">${withdrawal.receiverName}</td>
+                        <td class="px-4 py-3">${withdrawal.receiverAccount}</td>
+                        <td class="px-4 py-3 text-xs">${withdrawal.date}</td>
+                        <td class="px-4 py-3">
+                            <button onclick="approveWithdrawal(${withdrawal.id})" class="bg-green-500 text-white px-2 py-1 rounded text-xs hover:bg-green-600 mr-1">
+                                Approve
+                            </button>
+                            <button onclick="rejectWithdrawal(${withdrawal.id})" class="bg-red-500 text-white px-2 py-1 rounded text-xs hover:bg-red-600">
+                                Reject
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+      }
+
+      // Update notification
+      const pendingCount = pendingWithdrawals.length;
+      const alert = document.getElementById('pending-withdrawals-alert');
+      const countSpan = document.getElementById('pending-withdrawals-count');
+
+      if (pendingCount > 0) {
+        alert.classList.remove('hidden');
+        countSpan.textContent = pendingCount;
+      } else {
+        alert.classList.add('hidden');
+      }
+    }
+
+    // Approve withdrawal
+    function approveWithdrawal(withdrawalId) {
+      const withdrawal = pendingWithdrawals.find(w => w.id === withdrawalId);
+      if (!withdrawal) return;
+
+      const user = users.find(u => u.email === withdrawal.userEmail);
+      if (!user) return;
+
+      // Update withdrawal status
+      withdrawal.status = 'approved';
+
+      // Remove from pending withdrawals
+      pendingWithdrawals = pendingWithdrawals.filter(w => w.id !== withdrawalId);
+
+      saveToLocalStorage(); // Save data after withdrawal approval
+
+      alert(`Withdrawal approved! Rs.${withdrawal.amount} will be sent to ${withdrawal.receiverName} via ${withdrawal.method}.`);
+
+      updatePendingWithdrawalsTable();
+      updateAdminStats();
+
+      // Update user dashboard if they're currently logged in
+      if (currentUser && currentUser.email === user.email) {
+        updateUserDashboard();
+      }
+    }
+
+    // Reject withdrawal
+    function rejectWithdrawal(withdrawalId) {
+      if (confirm('Are you sure you want to reject this withdrawal request? The amount will be refunded to user\'s balance.')) {
+        const withdrawal = pendingWithdrawals.find(w => w.id === withdrawalId);
+        if (!withdrawal) return;
+
+        const user = users.find(u => u.email === withdrawal.userEmail);
+        if (user) {
+          // Refund the amount back to user's earnings
+          user.earnings += withdrawal.amount;
+
+          // Update withdrawal status
+          withdrawal.status = 'rejected';
+        }
+
+        pendingWithdrawals = pendingWithdrawals.filter(w => w.id !== withdrawalId);
+        updatePendingWithdrawalsTable();
+        updateAdminStats();
+
+        // Update user dashboard if they're currently logged in
+        if (currentUser && withdrawal && currentUser.email === withdrawal.userEmail) {
+          updateUserDashboard();
+        }
+
+        alert('Withdrawal rejected and amount refunded to user\'s balance.');
+      }
+    }
+
+    // Update admin statistics
+    function updateAdminStats() {
+      const regularUsers = users.filter(u => !u.isAdmin);
+      const totalUsers = regularUsers.length;
+      const activePlans = regularUsers.filter(u => u.plan !== 'No Plan').length;
+      const totalRevenue = regularUsers.reduce((sum, u) => {
+        const planCost = u.plan === 'Gold' ? 3000 : u.plan === 'Platinum' ? 2000 : u.plan === 'Silver' ? 1000 : 0;
+        return sum + planCost;
+      }, 0);
+      const totalAds = regularUsers.reduce((sum, u) => sum + u.adsWatched, 0);
+
+      // Update admin stats
+      if (document.getElementById('total-users')) {
+        document.getElementById('total-users').textContent = totalUsers;
+        document.getElementById('active-plans').textContent = activePlans;
+        document.getElementById('total-revenue').textContent = `Rs.${totalRevenue.toLocaleString()}`;
+        document.getElementById('ads-served').textContent = totalAds;
+      }
+
+      // Update plan distribution
+      const silverCount = regularUsers.filter(u => u.plan === 'Silver').length;
+      const platinumCount = regularUsers.filter(u => u.plan === 'Platinum').length;
+      const goldCount = regularUsers.filter(u => u.plan === 'Gold').length;
+
+      if (document.getElementById('silver-count')) {
+        document.getElementById('silver-count').textContent = silverCount;
+        document.getElementById('silver-revenue').textContent = `Rs.${(silverCount * 1000).toLocaleString()} revenue`;
+        document.getElementById('platinum-count').textContent = platinumCount;
+        document.getElementById('platinum-revenue').textContent = `Rs.${(platinumCount * 2000).toLocaleString()} revenue`;
+        document.getElementById('gold-count').textContent = goldCount;
+        document.getElementById('gold-revenue').textContent = `Rs.${(goldCount * 3000).toLocaleString()} revenue`;
+      }
+
+      // Update users table
+      updateUsersTable();
+    }
+
+    // Update users table in admin panel
+    function updateUsersTable() {
+      const tbody = document.getElementById('users-table');
+      if (!tbody) return;
+
+      const regularUsers = users.filter(u => !u.isAdmin);
+
+      if (regularUsers.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" class="px-4 py-8 text-center text-gray-500">No users registered yet</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = regularUsers.map(user => {
+        const planColor = user.plan === 'Gold' ? 'bg-yellow-100 text-yellow-800' :
+          user.plan === 'Platinum' ? 'bg-blue-100 text-blue-800' :
+            user.plan === 'Silver' ? 'bg-gray-100 text-gray-800' :
+              'bg-red-100 text-red-800';
+
+        return `
+                    <tr>
+                        <td class="px-4 py-3">${user.name}</td>
+                        <td class="px-4 py-3">${user.email}</td>
+                        <td class="px-4 py-3">${user.phone}</td>
+                        <td class="px-4 py-3"><span class="${planColor} px-2 py-1 rounded-full text-xs">${user.plan}</span></td>
+                        <td class="px-4 py-3">${user.adsWatched || 0}</td>
+                        <td class="px-4 py-3">Rs.${user.earnings}</td>
+                        <td class="px-4 py-3">Rs.${user.referralEarnings || 0}</td>
+                        <td class="px-4 py-3 font-semibold">Rs.${user.earnings + (user.referralEarnings || 0)}</td>
+                        <td class="px-4 py-3">${user.referralCode}</td>
+                        <td class="px-4 py-3">${user.referredBy}</td>
+                        <td class="px-4 py-3"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">${user.status}</span></td>
+                        <td class="px-4 py-3">
+                            <select onchange="changePlan('${user.email}', this.value)" class="text-xs border rounded px-1 py-1 mr-1">
+                                <option value="">Change Plan</option>
+                                <option value="No Plan">No Plan</option>
+                                <option value="Silver">Silver</option>
+                                <option value="Platinum">Platinum</option>
+                                <option value="Gold">Gold</option>
+                            </select>
+                            <button onclick="deleteUser('${user.email}')" class="bg-red-500 text-white px-2 py-1 rounded text-xs hover:bg-red-600">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                `;
+      }).join('');
+    }
+
+    // Menu functions
+    function toggleUserMenu() {
+      const menu = document.getElementById('user-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    function toggleAdminMenu() {
+      const menu = document.getElementById('admin-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Close menus when clicking outside
+    document.addEventListener('click', function (event) {
+      const userMenu = document.getElementById('user-menu');
+      const adminMenu = document.getElementById('admin-menu');
+
+      if (!event.target.closest('#user-nav')) {
+        userMenu.classList.add('hidden');
+      }
+      if (!event.target.closest('#admin-nav')) {
+        adminMenu.classList.add('hidden');
+      }
+    });
+
+    // Show withdraw modal with eligibility checks
+    function showWithdraw() {
+      document.getElementById('user-menu').classList.add('hidden');
+
+      if (!currentUser || currentUser.isAdmin) {
+        alert('Please login as a user to withdraw!');
+        navigateTo('login');
+        return;
+      }
+
+      if (currentUser.plan === 'No Plan') {
+        alert('Please purchase a plan first to access withdrawal feature!');
+        navigateTo('buy-plan');
+        return;
+      }
+
+      // Check referral requirement based on plan
+      const userReferrals = users.filter(u => u.referredBy === currentUser.referralCode && !u.isAdmin).length;
+      const totalEarnings = currentUser.earnings + (currentUser.referralEarnings || 0);
+
+      // Determine required referrals based on plan
+      let requiredReferrals = 0;
+      if (currentUser.plan === 'Silver') requiredReferrals = 5;
+      else if (currentUser.plan === 'Platinum') requiredReferrals = 4;
+      else if (currentUser.plan === 'Gold') requiredReferrals = 3;
+
+      // Update available balance display
+      document.getElementById('available-balance').textContent = totalEarnings;
+      document.getElementById('current-referrals').textContent = userReferrals;
+      document.getElementById('required-referrals').textContent = requiredReferrals;
+
+      if (userReferrals < requiredReferrals) {
+        document.getElementById('withdraw-eligibility').classList.remove('hidden');
+        document.getElementById('withdraw-form').style.display = 'none';
+      } else {
+        document.getElementById('withdraw-eligibility').classList.add('hidden');
+        document.getElementById('withdraw-form').style.display = 'block';
+      }
+
+      document.getElementById('withdraw-modal').classList.remove('hidden');
+    }
+
+    function closeWithdrawModal() {
+      document.getElementById('withdraw-modal').classList.add('hidden');
+      document.getElementById('withdraw-form').reset();
+      document.getElementById('withdraw-eligibility').classList.add('hidden');
+      document.getElementById('withdraw-amount-error').classList.add('hidden');
+    }
+
+    // Menu action functions
+    function showEditProfile() {
+      document.getElementById('user-menu').classList.add('hidden');
+      document.getElementById('edit-profile-modal').classList.remove('hidden');
+
+      // Pre-fill the form with current user data
+      if (currentUser && !currentUser.isAdmin) {
+        document.getElementById('edit-name').value = currentUser.name;
+        document.getElementById('edit-dob').value = currentUser.dateOfBirth || '';
+        document.getElementById('edit-gender').value = currentUser.gender || '';
+      }
+    }
+
+    function closeEditProfileModal() {
+      document.getElementById('edit-profile-modal').classList.add('hidden');
+    }
+
+    function showBuyPlan() {
+      document.getElementById('user-menu').classList.add('hidden');
+      document.getElementById('buy-plan-modal').classList.remove('hidden');
+    }
+
+    function closeBuyPlanModal() {
+      document.getElementById('buy-plan-modal').classList.add('hidden');
+    }
+
+    function showManageUsers() {
+      document.getElementById('admin-menu').classList.add('hidden');
+      navigateTo('admin');
+      setTimeout(() => {
+        document.querySelector('#users-table').scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+
+    function showAdminProfile() {
+      document.getElementById('admin-menu').classList.add('hidden');
+      navigateTo('admin');
+    }
+
+    function showChangePassword() {
+      document.getElementById('user-menu').classList.add('hidden');
+      document.getElementById('admin-menu').classList.add('hidden');
+      document.getElementById('password-modal').classList.remove('hidden');
+    }
+
+    function closePasswordModal() {
+      document.getElementById('password-modal').classList.add('hidden');
+      document.getElementById('password-form').reset();
+    }
+
+    // Password change form
+    document.getElementById('password-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const currentPassword = document.getElementById('current-password').value;
+      const newPassword = document.getElementById('new-password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+
+      if (!currentUser) {
+        alert('Please login first!');
+        navigateTo('login');
+        return;
+      }
+
+      if (currentUser.password !== currentPassword) {
+        alert('Current password is incorrect!');
+        return;
+      }
+
+      if (newPassword !== confirmPassword) {
+        alert('New passwords do not match!');
+        return;
+      }
+
+      // Validate new password with security requirements
+      const passwordError = validatePassword(newPassword);
+      if (passwordError) {
+        alert(passwordError);
+        return;
+      }
+
+      currentUser.password = newPassword;
+      saveToLocalStorage(); // Save data after password change
+      closePasswordModal();
+      alert('Password changed successfully!');
+    });
+
+    // Update user payment history
+    function updateUserPaymentHistory() {
+      if (!currentUser || currentUser.isAdmin) return;
+
+      const tbody = document.getElementById('user-payment-history');
+      if (!tbody) return;
+
+      // Combine payment history and withdraw history
+      const allTransactions = [];
+
+      // Add payment history
+      if (currentUser.paymentHistory) {
+        currentUser.paymentHistory.forEach(payment => {
+          allTransactions.push({
+            ...payment,
+            type: 'payment',
+            typeDisplay: payment.plan
+          });
+        });
+      }
+
+      // Add withdraw history
+      if (currentUser.withdrawHistory) {
+        currentUser.withdrawHistory.forEach(withdraw => {
+          allTransactions.push({
+            ...withdraw,
+            type: 'withdraw',
+            typeDisplay: `Withdraw (${withdraw.method})`
+          });
+        });
+      }
+
+      if (allTransactions.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" class="px-4 py-8 text-center text-gray-500">No transaction history</td></tr>';
+        return;
+      }
+
+      // Sort by date (newest first)
+      allTransactions.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      tbody.innerHTML = allTransactions.map(transaction => {
+        let statusColor = '';
+        let statusText = '';
+        let typeColor = '';
+        let detailsText = '';
+
+        if (transaction.status === 'pending') {
+          statusColor = 'bg-yellow-100 text-yellow-800';
+          statusText = 'Processing';
+        } else if (transaction.status === 'approved') {
+          statusColor = 'bg-green-100 text-green-800';
+          statusText = 'Approved';
+        } else if (transaction.status === 'rejected') {
+          statusColor = 'bg-red-100 text-red-800';
+          statusText = 'Rejected';
+        }
+
+        if (transaction.type === 'payment') {
+          typeColor = 'bg-blue-100 text-blue-800';
+          detailsText = transaction.status === 'pending' ? 'Admin is reviewing your payment' :
+            transaction.status === 'approved' ? 'Payment approved, plan activated' :
+              'Payment was rejected, please contact support';
+        } else {
+          typeColor = 'bg-purple-100 text-purple-800';
+          detailsText = transaction.status === 'pending' ? 'Withdraw request is being processed' :
+            transaction.status === 'approved' ? `Money sent to ${transaction.receiverName} (${transaction.receiverAccount})` :
+              'Withdraw request was rejected, amount refunded';
+        }
+
+        return `
+                    <tr>
+                        <td class="px-4 py-3"><span class="${typeColor} px-2 py-1 rounded-full text-xs">${transaction.typeDisplay}</span></td>
+                        <td class="px-4 py-3 font-semibold">Rs.${transaction.amount}</td>
+                        <td class="px-4 py-3 text-xs">${transaction.date}</td>
+                        <td class="px-4 py-3"><span class="${statusColor} px-2 py-1 rounded-full text-xs">${statusText}</span></td>
+                        <td class="px-4 py-3 text-xs">${detailsText}</td>
+                    </tr>
+                `;
+      }).join('');
+    }
+
+    // Screenshot preview functionality
+    document.getElementById('payment-screenshot').addEventListener('change', function (e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById('preview-image').src = e.target.result;
+          document.getElementById('screenshot-preview').classList.remove('hidden');
+        };
+        reader.readAsDataURL(file);
+      } else {
+        document.getElementById('screenshot-preview').classList.add('hidden');
+      }
+    });
+
+    // Close image viewer with Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeImageViewer();
+      }
+    });
+
+    // Close image viewer when clicking outside the image
+    document.getElementById('image-viewer-modal').addEventListener('click', function (e) {
+      if (e.target === this) {
+        closeImageViewer();
+      }
+    });
+
+    // Withdraw form handler
+    document.getElementById('withdraw-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (!currentUser || currentUser.isAdmin) return;
+
+      const method = document.getElementById('withdraw-method').value;
+      const receiverName = document.getElementById('receiver-name').value;
+      const receiverAccount = document.getElementById('receiver-account').value;
+      const amount = parseInt(document.getElementById('withdraw-amount').value);
+
+      // Validate amount range
+      if (amount < 355 || amount > 12000) {
+        document.getElementById('withdraw-amount-error').classList.remove('hidden');
+        return;
+      } else {
+        document.getElementById('withdraw-amount-error').classList.add('hidden');
+      }
+
+      // Check if user has enough balance
+      const totalEarnings = currentUser.earnings + (currentUser.referralEarnings || 0);
+      if (amount > totalEarnings) {
+        alert('Insufficient balance! Your available balance is Rs.' + totalEarnings);
+        return;
+      }
+
+      // Check referral requirement based on plan
+      const userReferrals = users.filter(u => u.referredBy === currentUser.referralCode && !u.isAdmin).length;
+      let requiredReferrals = 0;
+      if (currentUser.plan === 'Silver') requiredReferrals = 5;
+      else if (currentUser.plan === 'Platinum') requiredReferrals = 4;
+      else if (currentUser.plan === 'Gold') requiredReferrals = 3;
+
+      if (userReferrals < requiredReferrals) {
+        alert(`You need at least ${requiredReferrals} referrals to withdraw with your ${currentUser.plan} plan. Current referrals: ${userReferrals}`);
+        return;
+      }
+
+      // Create withdraw request
+      const withdrawRequest = {
+        id: Date.now(),
+        userEmail: currentUser.email,
+        userName: currentUser.name,
+        method: method,
+        receiverName: receiverName,
+        receiverAccount: receiverAccount,
+        amount: amount,
+        date: new Date().toLocaleDateString(),
+        status: 'pending'
+      };
+
+      // Add to pending withdrawals for admin review
+      pendingWithdrawals.push(withdrawRequest);
+      allWithdrawals.push(withdrawRequest);
+
+      // Add to user's withdraw history (create if doesn't exist)
+      if (!currentUser.withdrawHistory) {
+        currentUser.withdrawHistory = [];
+      }
+      currentUser.withdrawHistory.push(withdrawRequest);
+
+      // Deduct amount from user's earnings
+      if (amount <= currentUser.earnings) {
+        currentUser.earnings -= amount;
+      } else {
+        const remainingFromEarnings = currentUser.earnings;
+        const fromReferrals = amount - remainingFromEarnings;
+        currentUser.earnings = 0;
+        currentUser.referralEarnings -= fromReferrals;
+      }
+
+      saveToLocalStorage(); // Save data after withdrawal submission
+
+      // Update admin notifications
+      updatePendingWithdrawalsTable();
+      updateAdminStats();
+
+      alert('Withdraw request submitted successfully! Admin will process your request within 24-48 hours.');
+
+      updateUserDashboard();
+      closeWithdrawModal();
+    });
+
+    // Forgot password functionality
+    let forgotPasswordUser = null;
+    let verificationCode = null;
+
+    function showForgotPassword() {
+      document.getElementById('forgot-password-modal').classList.remove('hidden');
+      document.getElementById('forgot-step-1').classList.remove('hidden');
+      document.getElementById('forgot-step-2').classList.add('hidden');
+      document.getElementById('forgot-step-3').classList.add('hidden');
+      document.getElementById('forgot-email-form').reset();
+    }
+
+    function closeForgotPasswordModal() {
+      document.getElementById('forgot-password-modal').classList.add('hidden');
+      forgotPasswordUser = null;
+      verificationCode = null;
+    }
+
+    function goBackToEmailStep() {
+      document.getElementById('forgot-step-1').classList.remove('hidden');
+      document.getElementById('forgot-step-2').classList.add('hidden');
+      document.getElementById('forgot-step-3').classList.add('hidden');
+    }
+
+    function maskEmail(email) {
+      const [username, domain] = email.split('@');
+      const maskedUsername = username.charAt(0) + '*'.repeat(username.length - 2) + username.charAt(username.length - 1);
+      return maskedUsername + '@' + domain;
+    }
+
+    // Forgot password email form
+    document.getElementById('forgot-email-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById('forgot-email').value;
+      const user = users.find(u => u.email === email);
+
+      if (!user) {
+        alert('No account found with this email address!');
+        return;
+      }
+
+      forgotPasswordUser = user;
+      verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+      // In a real application, you would send this code via email
+      // For demo purposes, we'll show it in an alert
+      alert(`Verification code sent to your email: ${verificationCode}\n\n(In a real app, this would be sent via email)`);
+
+      document.getElementById('masked-email').textContent = maskEmail(email);
+      document.getElementById('forgot-step-1').classList.add('hidden');
+      document.getElementById('forgot-step-2').classList.remove('hidden');
+    });
+
+    // Forgot password verification form
+    document.getElementById('forgot-verify-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const enteredCode = document.getElementById('verification-code').value;
+
+      if (enteredCode !== verificationCode) {
+        alert('Invalid verification code! Please try again.');
+        return;
+      }
+
+      document.getElementById('forgot-step-2').classList.add('hidden');
+      document.getElementById('forgot-step-3').classList.remove('hidden');
+    });
+
+    // Forgot password reset form
+    document.getElementById('forgot-reset-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const newPassword = document.getElementById('new-forgot-password').value;
+      const confirmPassword = document.getElementById('confirm-forgot-password').value;
+
+      if (newPassword !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+      }
+
+      // Validate new password
+      const passwordError = validatePassword(newPassword);
+      if (passwordError) {
+        alert(passwordError);
+        return;
+      }
+
+      forgotPasswordUser.password = newPassword;
+      saveToLocalStorage();
+
+      alert('Password reset successfully! You can now login with your new password.');
+      closeForgotPasswordModal();
+      navigateTo('login');
+    });
+
+    // Admin account settings functions
+    function showAdminAccountSettings() {
+        document.getElementById('admin-menu').classList.add('hidden');
+        if (!currentUser || !currentUser.isAdmin) return;
+            
+        document.getElementById('admin-display-name-input').value = currentUser.displayName || 'Admin Panel';
+        document.getElementById('admin-email').value = currentUser.email;
+        document.getElementById('admin-phone').value = currentUser.phone;
+        document.getElementById('admin-account-modal').classList.remove('hidden');
+    }
+
+    function closeAdminAccountModal() {
+        document.getElementById('admin-account-modal').classList.add('hidden');
+        document.getElementById('admin-account-form').reset();
+    }
+
+    // Admin account form handler
+    document.getElementById('admin-account-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (!currentUser || !currentUser.isAdmin) return;
+
+      const newDisplayName = document.getElementById('admin-display-name-input').value;
+      const newEmail = document.getElementById('admin-email').value;
+      const newPhone = document.getElementById('admin-phone').value;
+      const currentPassword = document.getElementById('admin-current-password').value;
+
+      if (currentUser.password !== currentPassword) {
+        alert('Current password is incorrect!');
+        return;
+      }
+
+      // Check if new email is already used by another user (excluding current admin)
+      const existingUser = users.find(u => u.email === newEmail && u.email !== currentUser.email);
+      if (existingUser) {
+        alert('This email is already in use by another account!');
+        return;
+      }
+
+      // Check if new phone is already used by another user (excluding current admin)
+      const existingPhone = users.find(u => u.phone === newPhone && u.phone !== currentUser.phone);
+      if (existingPhone) {
+        alert('This phone number is already in use by another account!');
+        return;
+      }
+
+      currentUser.displayName = newDisplayName;
+      currentUser.email = newEmail;
+      currentUser.phone = newPhone;
+
+      // Update display name in the dashboard
+      document.getElementById('admin-display-name').textContent = newDisplayName;
+
+      saveToLocalStorage();
+      closeAdminAccountModal();
+      alert('👑 Admin settings updated successfully!');
+    });
+      // Show admin welcome screen with full animation
+        function showAdminWelcomeScreen() {
+            const welcomeScreen = document.getElementById('admin-welcome-screen');
+            const adminName = currentUser.displayName || 'Admin Panel';
+            
+            // Update admin name in welcome screen
+            document.getElementById('admin-welcome-name').textContent = adminName;
+            
+            // Show the welcome screen
+            welcomeScreen.classList.remove('hidden');
+            
+            // Animate progress bar
+            const progressBar = document.getElementById('admin-progress-bar');
+            let progress = 0;
+            
+            const progressInterval = setInterval(() => {
+                progress += Math.random() * 15 + 5; // Random progress between 5-20%
+                if (progress > 100) progress = 100;
+                
+                progressBar.style.width = progress + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    
+                    // Wait a moment then transition to dashboard
+                    setTimeout(() => {
+                        // Fade out welcome screen
+                        welcomeScreen.style.transition = 'opacity 1s ease-out';
+                        welcomeScreen.style.opacity = '0';
+                        
+                        setTimeout(() => {
+                            welcomeScreen.classList.add('hidden');
+                            welcomeScreen.style.opacity = '1';
+                            welcomeScreen.style.transition = '';
+                            
+                            // Update admin display name and show dashboard
+                            document.getElementById('admin-display-name').textContent = adminName;
+                            showPage('admin');
+                            updateAdminStats();
+                        }, 1000);
+                    }, 500);
+                }
+            }, 200); // Update every 200ms for smooth animation
+        }
+
+        // Auto-refresh ads container every minute to update timers
+        setInterval(() => {
+            if (currentUser && !currentUser.isAdmin && document.getElementById('dashboard-page').classList.contains('page') && !document.getElementById('dashboard-page').classList.contains('hidden')) {
+                updateAdsContainer();
+            }
+        }, 60000); // Update every minute
+        
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function () {
+      // Show home page by default
+      navigateTo('home');
+    });
+  </script>
+</body>
+
+</html>
